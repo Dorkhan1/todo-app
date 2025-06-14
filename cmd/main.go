@@ -11,14 +11,24 @@ import (
 )
 
 func main() {
-	if err := InitConfig(); err != nil{
+	if err := InitConfig(); err != nil {
 		log.Fatalf("error inintializing config: %s", err.Error())
-		
+	}
+
+	db, err := repository.NewPostgresDB(repository.Config{
+		Host:     "localhost",
+		Port:     "5433",
+		Username: "postgres",
+		Password: "qwerty",
+		DBName:   "ToDo-db",
+		SSlMode:  "disable",
+	})
+	if err != nil {
+		log.Fatalf("failed to initialize bd:%s", err.Error())
 	}
 	repos := repository.NewRepository()
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
-
 
 	srv := new(todo.Server)
 	if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
@@ -26,7 +36,7 @@ func main() {
 	}
 }
 func InitConfig() error {
-	 viper.AddConfigPath("configs")
-	 viper.SetConfigName("config")
-	 return viper.ReadInConfig( )
-} 
+	viper.AddConfigPath("configs")
+	viper.SetConfigName("config")
+	return viper.ReadInConfig()
+}

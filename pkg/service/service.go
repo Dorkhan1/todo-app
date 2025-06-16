@@ -20,10 +20,10 @@ type Service struct {
 	TodoItem
 }
 
-func NewService(repo *repository.Repository) *Service {
+func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repos.Authorization),
-		TodoList:      repo,
-		TodoItem:      repo,
+		TodoList:      repos,
+		TodoItem:      repos,
 	}
 }

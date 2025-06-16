@@ -22,6 +22,6 @@ type Repository struct {
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Authorization: NewAuthPostgres(db * sqlx.DB),
+		Authorization: NewAuthPostgres(db),
 	}
 }

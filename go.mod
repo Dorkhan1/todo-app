@@ -9,6 +9,8 @@ require (
 	github.com/spf13/viper v1.20.1
 )
 
+require github.com/sirupsen/logrus v1.9.3
+
 require (
 	github.com/bytedance/sonic v1.13.3 // indirect
 	github.com/bytedance/sonic/loader v0.2.4 // indirect

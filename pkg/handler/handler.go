@@ -37,7 +37,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 				items.GET("/", h.getALLItems)
 			}
 		}
-		items := router.Group("/items")
+
+		items := api.Group("/items")
 		{
 			items.GET("/:id", h.getItemById)
 			items.PUT("/:id", h.updateItem)

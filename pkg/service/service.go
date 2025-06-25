@@ -23,10 +23,11 @@ type TodoItem interface {
 	Create(userId, listId int, item todo.ToDoItem) (int, error)
 	GetAll(userId, listId int) ([]todo.ToDoItem, error)
 	GetById(userId, itemId int) (todo.ToDoItem, error)
+	Delete(userId, itemId int) error
 }
 type Service struct {
 	Authorization
-	TodoList
+	TodoList 
 	TodoItem
 }
 
